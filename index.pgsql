@@ -71,6 +71,43 @@ create table if not exists computador (
     FOREIGN KEY (historico_id) references historico(id)
 );
 
+create table if not exists estoque (
+    id serial primary key,
+    tipo_do_item text not null,
+    item_id integer not null,
+    qntd integer not null default 0,
+
+    UNIQUE(tipo_do_item, item_id)
+);
+
+
+
+
+INSERT INTO processador (
+    nome_modelo, geracao, qntd_nucleos, qntd_threads,
+    frequencia, arquitetura, soquete, potencia_termal
+) VALUES (
+    'Intel Core i5-10400', 10, 6, 12,
+    2.9, 'x64', 'LGA1200', 65
+);
+
+INSERT INTO memoria (nome_modelo, geracao, qntd)
+VALUES ('Kingston Fury Beast', 5, 8);
+
+
+INSERT INTO armazenamento (nome_modelo, qntd, tipo)
+VALUES ('Samsung 970 EVO', 1, 'SSD(NVME)');
+
+INSERT INTO impressora (modelo, tipo, historico_id, patrimonio_id)
+VALUES ('HP LaserJet 1020', 'laser', 1, 1);
+
+insert into historico (data_aquisicao, preco)
+values (now(),100.00);
+
+insert into patrimonio (codigo, setor)
+values ()
+
+select * from historico;
 
 
 
