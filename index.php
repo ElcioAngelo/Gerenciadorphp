@@ -22,6 +22,31 @@ $password = $_ENV['DATABASE_PASSWORD'];
 try {
     $pdo = new PDO("pgsql:host=$host;port=$port;dbname=$dbname;options='-c search_path=public'", $user, $password);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    // Query para verificar se as tabelas existem
+    $tableCheck = $pdo->query("
+          SELECT EXISTS (
+            SELECT FROM information_schema.tables 
+            WHERE table_schema = 'public' 
+            AND table_name = 'computers'
+        );
+    ");
+
+    //Variável que verifica se as tabelas existem
+    $tableExists = $tableCheck->fetchColumn();
+
+    // Caso as tabelas não existem, o código index sql será executado
+    if(!$tableExists) {
+        try{
+            $scriptSQL = file_get_contents('index.pgsql');
+            $pdo->exec($scriptSQL);
+            echo "Tabelas criadas com sucesso";
+        }catch(PDOException $e){
+            die("Erro ao criar tabelas no banco de dados" . $e->getMessage());
+        }
+    }
+
+
 } catch (PDOException $e) {
     die("Erro de conexão: " . $e->getMessage());
 }
