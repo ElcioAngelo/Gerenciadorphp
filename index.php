@@ -1,15 +1,23 @@
 <?php
 
+require __DIR__ . '/vendor/autoload.php';
+
+use Dotenv\Dotenv;
+
+$dotenv = Dotenv::createImmutable(__DIR__);
+$dotenv->load();
+
 $page_title = "Gerenciamento de computadores";
 $current_page = "home";
+
 include 'includes/header.php';
 
 // Conexão com PostgreSQL
-$host = "localhost";
-$port = "5432";
-$dbname = "gerenciamento";
-$user = "postgres";
-$password = "123";
+$host = $_ENV['DATABASE_HOST'];
+$port = $_ENV['DATABASE_PORT'];
+$dbname = $_ENV['DATABASE_NAME'];
+$user = $_ENV['DATABASE_USER'];
+$password = $_ENV['DATABASE_PASSWORD'];
 
 try {
     $pdo = new PDO("pgsql:host=$host;port=$port;dbname=$dbname;options='-c search_path=public'", $user, $password);
