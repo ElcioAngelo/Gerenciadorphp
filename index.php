@@ -12,7 +12,7 @@ $current_page = "home";
 
 include 'includes/header.php';
 
-// Conexão com PostgreSQL
+// Conexão com o banco de dados.
 $host = $_ENV['DATABASE_HOST'];
 $port = $_ENV['DATABASE_PORT'];
 $dbname = $_ENV['DATABASE_NAME'];
@@ -20,33 +20,8 @@ $user = $_ENV['DATABASE_USER'];
 $password = $_ENV['DATABASE_PASSWORD'];
 
 try {
-    $pdo = new PDO("pgsql:host=$host;port=$port;dbname=$dbname;options='-c search_path=public'", $user, $password);
+    $pdo = new PDO("mysql:host=$host;port=$port;dbname=$dbname;options='-c search_path=public'", $user, $password);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-    // Query para verificar se as tabelas existem
-    $tableCheck = $pdo->query("
-          SELECT EXISTS (
-            SELECT FROM information_schema.tables 
-            WHERE table_schema = 'public' 
-            AND table_name = 'computers'
-        );
-    ");
-
-    //Variável que verifica se as tabelas existem
-    $tableExists = $tableCheck->fetchColumn();
-
-    // Caso as tabelas não existem, o código index sql será executado
-    if(!$tableExists) {
-        try{
-            $scriptSQL = file_get_contents('index.pgsql');
-            $pdo->exec($scriptSQL);
-            echo "Tabelas criadas com sucesso";
-        }catch(PDOException $e){
-            die("Erro ao criar tabelas no banco de dados" . $e->getMessage());
-        }
-    }
-
-
 } catch (PDOException $e) {
     die("Erro de conexão: " . $e->getMessage());
 }
@@ -96,10 +71,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['cabinetBrand'])) {
     $historico_id = $stmtHist->fetchColumn();
 
     // 5️⃣ Inserir patrimônio
-    $stmtPat = $pdo->prepare("INSERT INTO patrimonio (setor, codigo) VALUES (:setor, :codigo) RETURNING id");
+    $stmtPat = $pdo->prepare("INSERT INTO patrimonio (setor, patrimonio) VALUES (:setor, :patrimonio) RETURNING id");
     $stmtPat->execute([
         ':setor' => $_POST['sector'],
-        ':codigo' => $_POST['patrimony']
+        ':patrimonio' => $_POST['asset']
     ]);
     $patrimonio_id = $stmtPat->fetchColumn();
 
@@ -122,7 +97,7 @@ $totalSectors = $pdo->query("SELECT COUNT(*) FROM patrimonio")->fetchColumn();
 $monthlyMaintenances = $pdo->query("SELECT COUNT(*) FROM historico WHERE EXTRACT(MONTH FROM data_aquisicao) = EXTRACT(MONTH FROM CURRENT_DATE)")->fetchColumn();
 
 // Lista de últimos computadores
-$recentComputers = $pdo->query("SELECT p.codigo AS patrimonio, c.id
+$recentComputers = $pdo->query("SELECT p.patrimonio AS patrimonio, c.id, p.setor
                                  FROM computador c
                                  JOIN patrimonio p ON c.patrimonio_id = p.id
                                  ORDER BY c.id DESC LIMIT 5")->fetchAll(PDO::FETCH_ASSOC);
@@ -179,7 +154,7 @@ $sectors = $pdo->query("SELECT DISTINCT setor AS nome, id FROM patrimonio ORDER 
                     <h2>Últimos Computadores Cadastrados</h2>
                     <div id="recentComputers" class="recent-list">
                         <?php foreach ($recentComputers as $pc): ?>
-                            <div><?= htmlspecialchars($pc['marca_gabinete']) ?> - <?= htmlspecialchars($pc['patrimonio']) ?></div>
+                            <div><?= htmlspecialchars($pc['setor'])?> - <?= htmlspecialchars($pc['patrimonio']) ?></div>
                         <?php endforeach; ?>
                     </div>
                 </div>
@@ -195,7 +170,7 @@ $sectors = $pdo->query("SELECT DISTINCT setor AS nome, id FROM patrimonio ORDER 
                     <?php
                     $computers = $pdo->query("SELECT * FROM Computador")->fetchAll(PDO::FETCH_ASSOC);
                     foreach ($computers as $c) {
-                        echo "<div>{$c['marca_gabinete']} - {$c['patrimonio']}</div>";
+                        echo "<div> - {$c['patrimonio']}</div>";
                     }
                     ?>
                 </div>

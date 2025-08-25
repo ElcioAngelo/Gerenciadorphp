@@ -104,10 +104,13 @@ VALUES ('HP LaserJet 1020', 'laser', 1, 1);
 insert into historico (data_aquisicao, preco)
 values (now(),100.00);
 
-insert into patrimonio (codigo, setor)
+insert into patrimonio (patrimonio, setor)
 values ()
 
 select * from historico;
+
+
+
 
 
 

@@ -24,7 +24,7 @@
 
     <header class="navbar">
         <img class="logo2" src="img/3.png" alt="">
-        <div class="logo">Sistema de Gerenciamento </div>
+        <div class="navbar-title">Sistema de Gerenciamento </div>
 
         <!-- Botão do menu hambúrguer -->
         <div class="hamburger" id="hamburger">
