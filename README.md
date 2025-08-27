@@ -12,4 +12,7 @@
 
 #### Tecnologias utilizadas
 * Postgresql - Banco de dados
-* PHP - Linguagem de programação
+* Linguagem de programação usadas:
+    * Javascript
+    * PHP
+    

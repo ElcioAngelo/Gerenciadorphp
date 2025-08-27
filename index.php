@@ -11,20 +11,7 @@ $page_title = "Gerenciamento de computadores";
 $current_page = "home";
 
 include 'includes/header.php';
-
-// Conexão com o banco de dados.
-$host = $_ENV['DATABASE_HOST'];
-$port = $_ENV['DATABASE_PORT'];
-$dbname = $_ENV['DATABASE_NAME'];
-$user = $_ENV['DATABASE_USER'];
-$password = $_ENV['DATABASE_PASSWORD'];
-
-try {
-    $pdo = new PDO("mysql:host=$host;port=$port;dbname=$dbname;options='-c search_path=public'", $user, $password);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $e) {
-    die("Erro de conexão: " . $e->getMessage());
-}
+include('./database/db.php');
 
 // Cadastro de computador
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['cabinetBrand'])) {

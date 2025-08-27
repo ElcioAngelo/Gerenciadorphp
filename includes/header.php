@@ -33,18 +33,15 @@
 
         <ul class="nav-links" id="nav-links">
             <li><a href="index.php" <?php echo (!isset($_GET['page']) || $_GET['page'] == 'home') ? 'class="active"' : ''; ?>>Home</a></li>
-            <li><a href="computadores.php" <?php echo (isset($_GET['page']) && $_GET['page'] == 'computaores') ? 'class="active"' : ''; ?>>Computadores</a></li>
+            <li><a href="computers.php" <?php echo (isset($_GET['page']) && $_GET['page'] == 'computadores') ? 'class="active"' : ''; ?>>Computadores</a></li>
             <li><a href="setores.php" <?php echo (isset($_GET['page']) && $_GET['page'] == 'setores') ? 'class="active"' : ''; ?>>Setores</a></li>
-            
-
-           
         </ul>
     </header>
 
     <hr class="tt">
 
     <script>
-        document.getElementById('hamburger').addEventListener('click', function () {
+            document.getElementById('hamburger').addEventListener('click', function () {
             document.getElementById('nav-links').classList.toggle('active');
         });
     </script>
