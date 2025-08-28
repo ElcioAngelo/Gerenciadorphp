@@ -1,5 +1,5 @@
 ## Gerenciador de computadores e impressoras
-### Este programa é um simples gerenciador para dispositivos eletronicos, que registra e grava informações como:
+### Este programa é um gerenciador para dispositivos eletronicos, que registra e grava informações como:
 
 #### Computadores:
 * Data de aquisição, valor, histórico de manutenção 
