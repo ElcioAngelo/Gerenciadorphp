@@ -1,17 +1,25 @@
+
 <?php
-    /*
-        Área de variáveis e funções
-    */
-    include 'includes/header.php';
+
+include 'includes/header.php'
 
 ?>
 
-<html>
-    <!-- Código HTML -->
-    <link rel="stylesheet" href="style.css"/>
-    <div class"app">
-        <main class="main-content">
-                
-        </main>
+<link rel="stylesheet" href="computadores.css">
+
+
+
+
+
+
+<div class="container text-center">
+  <div class="row">
+    <div class="col">
+    <h2>Gerenciamento de Computadores</h2>
     </div>
-</html>
+    <div class="col">
+    <button>+ Novo Computador</button>
+    </div>
+    
+  </div>
+</div>

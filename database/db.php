@@ -1,22 +1,27 @@
 <?php
-    // Require do composer, necessário para extensões.
-    require __DIR__ . '/vendor/autoload.php';
+// Caminho para o autoload do Composer
+require __DIR__ . '/../vendor/autoload.php';
 
-    use Dotenv\Dotenv;
-    $dotenv = Dotenv::createImmutable(__DIR__);
-    $dotenv->load();
+// Carrega as variáveis de ambiente do arquivo .env na raiz do projeto
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/..');
+$dotenv->load();
 
-    // Conexão do banco de dados.
-    $host = $_ENV['DATABASE_HOST'];
-    $port = $_ENV['DATABASE_PORT'];
-    $dbname = $_ENV['DATABASE_NAME'];
-    $user = $_ENV['DATABASE_USER'];
-    $password = $_ENV['DATABASE_PASSWORD'];
+// Lê as variáveis do .env
+$dbHost     = $_ENV['DB_HOST'] ?? '127.0.0.1';
+$dbPort     = $_ENV['DB_PORT'] ?? '3306';
+$dbName     = $_ENV['DB_DATABASE'] ?? 'gerenciamento';
+$dbUser     = $_ENV['DB_USERNAME'] ?? 'root';
+$dbPassword = $_ENV['DB_PASSWORD'] ?? '';
 
-    try {
-        $pdo = new PDO("mysql:host=$host;port=$port;dbname=$dbname;options='-c search_path=public'", $user, $password);
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    } catch (PDOException $e) {
-        die("Erro de conexão: " . $e->getMessage());
-    }
-?>
+try {
+    // Cria a conexão PDO com MariaDB/MySQL
+    $dsn = "mysql:host=$dbHost;port=$dbPort;dbname=$dbName;charset=utf8mb4";
+    $pdo = new PDO($dsn, $dbUser, $dbPassword);
+
+    // Configura o PDO para lançar exceções em caso de erro
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    echo "✅ Conexão com MariaDB realizada com sucesso!";
+} catch (PDOException $e) {
+    echo "❌ Erro de conexão: " . $e->getMessage();
+}
