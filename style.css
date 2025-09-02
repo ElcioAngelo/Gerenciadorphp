@@ -811,30 +811,167 @@ body {
 
 
 
-/*teste*/
-/* Adicione este CSS ao seu style.css */
+/*teste-----------------------------------------------------------*/
+/* ADICIONE ESTAS VARIÁVEIS NO INÍCIO DO SEU STYLE.CSS */
 
 :root {
-    /* Variáveis para tema claro */
-    --bg-color: #ffffff;
-    --text-color: #333333;
-    --dropdown-bg: #f8f9fa;
-    --dropdown-border: #dee2e6;
-    --dropdown-hover: #e9ecef;
+    /* Tema Claro */
+    --bg-primary: #ffffff;
+    --bg-secondary: #f8f9fa;
+    --bg-card: #ffffff;
+    --text-primary: #333333;
+    --text-secondary: #666666;
+    --border-color: #dee2e6;
+    --header-bg: #ffffff;
+    --nav-bg: #f8f9fa;
+    --nav-active: #007bff;
     --shadow: rgba(0, 0, 0, 0.1);
+    --modal-bg: #ffffff;
+    --input-bg: #ffffff;
+    --button-primary: #007bff;
+    --button-secondary: #6c757d;
 }
 
 [data-bs-theme="dark"] {
-    /* Variáveis para tema escuro */
-    --bg-color: #1a1a1a;
-    --text-color: #e0e0e0;
-    --dropdown-bg: #2d2d2d;
-    --dropdown-border: #404040;
-    --dropdown-hover: #3a3a3a;
-    --shadow: rgba(255, 255, 255, 0.1);
+    /* Tema Escuro */
+    --bg-primary: #121212;
+    --bg-secondary: #1e1e1e;
+    --bg-card: #2d2d2d;
+    --text-primary: #e0e0e0;
+    --text-secondary: #b0b0b0;
+    --border-color: #404040;
+    --header-bg: #1a1a1a;
+    --nav-bg: #2d2d2d;
+    --nav-active: #4dabf7;
+    --shadow: rgba(0, 0, 0, 0.3);
+    --modal-bg: #2d2d2d;
+    --input-bg: #3a3a3a;
+    --button-primary: #4dabf7;
+    --button-secondary: #6c757d;
 }
 
-/* Estilos do Dropdown de Tema */
+/* SUBSTITUA OU ADICIONE ESTES ESTILOS NO SEU CSS EXISTENTE */
+
+body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Header */
+.header {
+    background-color: var(--header-bg);
+    border-bottom: 1px solid var(--border-color);
+    transition: background-color 0.3s ease;
+}
+
+.header h1 {
+    color: var(--text-primary);
+}
+
+/* Navegação */
+.nav-btn {
+    background-color: var(--nav-bg);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    transition: all 0.3s ease;
+}
+
+.nav-btn:hover {
+    background-color: var(--nav-active);
+    color: white;
+}
+
+.nav-btn.active {
+    background-color: var(--nav-active);
+    color: white;
+}
+
+/* Cards e Estatísticas */
+.stat-card, .card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    box-shadow: 0 2px 8px var(--shadow);
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.stat-card h3, .card h3 {
+    color: var(--text-primary);
+}
+
+.stat-card p, .card p {
+    color: var(--text-secondary);
+}
+
+/* Modais */
+.modal-content {
+    background-color: var(--modal-bg);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+}
+
+.modal-header {
+    border-bottom: 1px solid var(--border-color);
+}
+
+.modal-header h2 {
+    color: var(--text-primary);
+}
+
+/* Formulários */
+input, select, textarea {
+    background-color: var(--input-bg);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    transition: all 0.3s ease;
+}
+
+input:focus, select:focus, textarea:focus {
+    border-color: var(--nav-active);
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+/* Botões */
+.btn-primary {
+    background-color: var(--button-primary);
+    border-color: var(--button-primary);
+    color: white;
+}
+
+.btn-secondary {
+    background-color: var(--button-secondary);
+    border-color: var(--button-secondary);
+    color: white;
+}
+
+/* Labels dos formulários */
+label {
+    color: var(--text-primary);
+}
+
+/* Setores Tree */
+.sectors-tree {
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+}
+
+/* Lista de computadores */
+.computers-grid .computer-card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+}
+
+/* Search bar */
+.search-bar input, .search-bar select {
+    background-color: var(--input-bg);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+}
+
+/* Dropdown do tema */
 .theme-selector {
     position: relative;
     display: inline-block;
@@ -842,9 +979,9 @@ body {
 }
 
 .dropdown-button {
-    background-color: var(--dropdown-bg);
-    color: var(--text-color);
-    border: 2px solid var(--dropdown-border);
+    background-color: var(--bg-card);
+    color: var(--text-primary);
+    border: 2px solid var(--border-color);
     padding: 8px 16px;
     font-size: 14px;
     cursor: pointer;
@@ -858,7 +995,7 @@ body {
 }
 
 .dropdown-button:hover {
-    background-color: var(--dropdown-hover);
+    background-color: var(--bg-secondary);
     transform: translateY(-1px);
     box-shadow: 0 4px 8px var(--shadow);
 }
@@ -877,8 +1014,8 @@ body {
     top: 100%;
     left: 0;
     right: 0;
-    background-color: var(--dropdown-bg);
-    border: 2px solid var(--dropdown-border);
+    background-color: var(--bg-card);
+    border: 2px solid var(--border-color);
     border-top: none;
     border-radius: 0 0 6px 6px;
     box-shadow: 0 4px 8px var(--shadow);
@@ -902,8 +1039,9 @@ body {
     align-items: center;
     gap: 8px;
     transition: background-color 0.2s ease;
-    border-bottom: 1px solid var(--dropdown-border);
+    border-bottom: 1px solid var(--border-color);
     font-size: 14px;
+    color: var(--text-primary);
 }
 
 .dropdown-item:last-child {
@@ -911,11 +1049,11 @@ body {
 }
 
 .dropdown-item:hover {
-    background-color: var(--dropdown-hover);
+    background-color: var(--bg-secondary);
 }
 
 .dropdown-item.active {
-    background-color: var(--dropdown-hover);
+    background-color: var(--bg-secondary);
     font-weight: bold;
 }
 
@@ -923,35 +1061,10 @@ body {
     font-size: 14px;
 }
 
-/* Ajuste no header para acomodar o dropdown */
-.header-content {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 20px;
-}
-
-.nav {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
 /* Responsividade */
 @media (max-width: 768px) {
     .theme-selector {
         margin-left: 0;
         margin-top: 10px;
-    }
-    
-    .header-content {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-    
-    .nav {
-        width: 100%;
-        justify-content: center;
     }
 }

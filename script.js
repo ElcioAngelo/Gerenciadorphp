@@ -606,3 +606,144 @@ setTimeout(() => {
 
 // Adicione este código ao seu script.js
 
+// Adicione este código ao seu script.js
+
+class ThemeManager {
+    constructor() {
+        this.currentTheme = this.getSavedTheme() || 'light';
+        this.dropdownButton = document.getElementById('themeButton');
+        this.dropdownContent = document.getElementById('dropdownContent');
+        this.currentThemeIcon = document.getElementById('currentThemeIcon');
+        this.currentThemeText = document.getElementById('currentThemeText');
+        
+        this.init();
+    }
+
+    init() {
+        this.applyTheme(this.currentTheme);
+        this.updateDropdownDisplay();
+        this.bindEvents();
+        this.updateActiveItem();
+    }
+
+    bindEvents() {
+        // Toggle dropdown
+        this.dropdownButton.addEventListener('click', (e) => {
+            e.stopPropagation();
+            this.toggleDropdown();
+        });
+
+        // Select theme
+        this.dropdownContent.addEventListener('click', (e) => {
+            const item = e.target.closest('.dropdown-item');
+            if (item) {
+                const theme = item.dataset.theme;
+                this.setTheme(theme);
+                this.closeDropdown();
+            }
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', () => {
+            this.closeDropdown();
+        });
+
+        // Handle auto theme (system preference)
+        if (window.matchMedia) {
+            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+                if (this.currentTheme === 'auto') {
+                    this.applyTheme('auto');
+                }
+            });
+        }
+    }
+
+    toggleDropdown() {
+        const isOpen = this.dropdownContent.classList.contains('show');
+        if (isOpen) {
+            this.closeDropdown();
+        } else {
+            this.openDropdown();
+        }
+    }
+
+    openDropdown() {
+        this.dropdownContent.classList.add('show');
+        this.dropdownButton.classList.add('active');
+    }
+
+    closeDropdown() {
+        this.dropdownContent.classList.remove('show');
+        this.dropdownButton.classList.remove('active');
+    }
+
+    setTheme(theme) {
+        this.currentTheme = theme;
+        this.applyTheme(theme);
+        this.saveTheme(theme);
+        this.updateDropdownDisplay();
+        this.updateActiveItem();
+    }
+
+    applyTheme(theme) {
+        const html = document.documentElement;
+        
+        if (theme === 'auto') {
+            // Detecta preferência do sistema
+            const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            html.setAttribute('data-bs-theme', prefersDark ? 'dark' : 'light');
+        } else {
+            html.setAttribute('data-bs-theme', theme);
+        }
+    }
+
+    updateDropdownDisplay() {
+        const themeConfig = {
+            light: { icon: '☀️', text: 'Claro' },
+            dark: { icon: '🌙', text: 'Escuro' },
+            auto: { icon: '🔄', text: 'Auto' }
+        };
+
+        const config = themeConfig[this.currentTheme];
+        this.currentThemeIcon.textContent = config.icon;
+        this.currentThemeText.textContent = config.text;
+    }
+
+    updateActiveItem() {
+        // Remove active class from all items
+        document.querySelectorAll('.dropdown-item').forEach(item => {
+            item.classList.remove('active');
+        });
+
+        // Add active class to current theme
+        const activeItem = document.querySelector(`[data-theme="${this.currentTheme}"]`);
+        if (activeItem) {
+            activeItem.classList.add('active');
+        }
+    }
+
+    saveTheme(theme) {
+        // Salva no localStorage
+        localStorage.setItem('theme', theme);
+    }
+
+    getSavedTheme() {
+        // Recupera do localStorage
+        return localStorage.getItem('theme');
+    }
+}
+
+// Inicializa o gerenciador de temas quando o DOM estiver carregado
+document.addEventListener('DOMContentLoaded', () => {
+    new ThemeManager();
+});
+
+// Previne o fechamento do dropdown quando clicado dentro dele
+document.addEventListener('DOMContentLoaded', () => {
+    const dropdownContent = document.getElementById('dropdownContent');
+    if (dropdownContent) {
+        dropdownContent.addEventListener('click', (e) => {
+            e.stopPropagation();
+        });
+    }
+});
