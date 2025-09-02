@@ -334,6 +334,7 @@ body {
     border-bottom: 1px solid #f1f5f9;
 }
 
+
 .recent-item:last-child {
     border-bottom: none;
 }
@@ -806,4 +807,151 @@ body {
     padding: 0.5rem;
     border-radius: 4px;
     font-size: 0.9rem;
+}
+
+
+
+/*teste*/
+/* Adicione este CSS ao seu style.css */
+
+:root {
+    /* Variáveis para tema claro */
+    --bg-color: #ffffff;
+    --text-color: #333333;
+    --dropdown-bg: #f8f9fa;
+    --dropdown-border: #dee2e6;
+    --dropdown-hover: #e9ecef;
+    --shadow: rgba(0, 0, 0, 0.1);
+}
+
+[data-bs-theme="dark"] {
+    /* Variáveis para tema escuro */
+    --bg-color: #1a1a1a;
+    --text-color: #e0e0e0;
+    --dropdown-bg: #2d2d2d;
+    --dropdown-border: #404040;
+    --dropdown-hover: #3a3a3a;
+    --shadow: rgba(255, 255, 255, 0.1);
+}
+
+/* Estilos do Dropdown de Tema */
+.theme-selector {
+    position: relative;
+    display: inline-block;
+    margin-left: 20px;
+}
+
+.dropdown-button {
+    background-color: var(--dropdown-bg);
+    color: var(--text-color);
+    border: 2px solid var(--dropdown-border);
+    padding: 8px 16px;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 120px;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px var(--shadow);
+}
+
+.dropdown-button:hover {
+    background-color: var(--dropdown-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px var(--shadow);
+}
+
+.dropdown-icon {
+    transition: transform 0.3s ease;
+    font-size: 12px;
+}
+
+.dropdown-button.active .dropdown-icon {
+    transform: rotate(180deg);
+}
+
+.dropdown-content {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: var(--dropdown-bg);
+    border: 2px solid var(--dropdown-border);
+    border-top: none;
+    border-radius: 0 0 6px 6px;
+    box-shadow: 0 4px 8px var(--shadow);
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+}
+
+.dropdown-content.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.dropdown-item {
+    padding: 10px 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background-color 0.2s ease;
+    border-bottom: 1px solid var(--dropdown-border);
+    font-size: 14px;
+}
+
+.dropdown-item:last-child {
+    border-bottom: none;
+}
+
+.dropdown-item:hover {
+    background-color: var(--dropdown-hover);
+}
+
+.dropdown-item.active {
+    background-color: var(--dropdown-hover);
+    font-weight: bold;
+}
+
+.theme-icon {
+    font-size: 14px;
+}
+
+/* Ajuste no header para acomodar o dropdown */
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .theme-selector {
+        margin-left: 0;
+        margin-top: 10px;
+    }
+    
+    .header-content {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .nav {
+        width: 100%;
+        justify-content: center;
+    }
 }
