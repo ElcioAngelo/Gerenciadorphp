@@ -603,11 +603,6 @@ setTimeout(() => {
 
 
 // !  -------------------------------------- teste ------------------------------------------
-
-// Adicione este código ao seu script.js
-
-// Adicione este código ao seu script.js
-
 class ThemeManager {
     constructor() {
         this.currentTheme = this.getSavedTheme() || 'light';
@@ -701,6 +696,7 @@ class ThemeManager {
         const themeConfig = {
             light: { icon: '☀️', text: 'Claro' },
             dark: { icon: '🌙', text: 'Escuro' },
+            RGB: { icon: '&#127912;', text: 'RGB' },
             auto: { icon: '🔄', text: 'Auto' }
         };
 

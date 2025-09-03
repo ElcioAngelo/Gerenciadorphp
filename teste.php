@@ -11,7 +11,7 @@
         <!-- Header -->
        <header class="header">
     <div class="header-content">
-        <img class="logo" src="img/3-removebg-preview.png" alt="">
+        <img class="logo" src="img/3.png" alt="">
         <h1> Sistema de Gerenciamento de Computadores</h1>
         <nav class="nav">
             <button class="nav-btn active" data-tab="dashboard">Home</button>
@@ -19,7 +19,8 @@
             <button class="nav-btn" data-tab="sectors">Setores</button>
         </nav>
         
-        <!-- ADICIONE O DROPDOWN AQUI -->
+        <!---------------------VVVVVV  DROPDOWN MODO ESCURO AQUI   VVVVVV---------------------------------------->
+
         <div class="theme-selector">
             <button class="dropdown-button" id="themeButton">
                 <span class="theme-icon" id="currentThemeIcon">☀️</span>
@@ -36,6 +37,10 @@
                     <span class="theme-icon">🌙</span>
                     <span>Tema Escuro</span>
                 </div>
+                <div class="dropdown-item" data-theme="RGB">
+                    <span class="theme-icon">&#127912;</span>
+                    <span>Tema Escuro com RGB</span>
+                </div>
                 <div class="dropdown-item" data-theme="auto">
                     <span class="theme-icon">🔄</span>
                     <span>Automático</span>
@@ -44,6 +49,11 @@
         </div>
     </div>
 </header>
+ <!---------------------------- ^^^^^^   DROPDOWN MODO ESCURO AQUI ^^^^^^^  ---------------------------------------->
+
+    <div class="linha-colorida-animada"></div>
+
+
 
         <!-- Main Content -->
         <main class="main-content">
