@@ -870,9 +870,7 @@ body {
     background-color: #202020!important;
 }
 
-[data-bs-theme="dark"] h3{
-    color: rgb(255, 255, 255) !important;
-}
+
 
 [data-bs-theme="dark"] strong{
     color: rgb(122, 122, 122) !important;
@@ -1031,6 +1029,117 @@ body {
 }
 
 
+/* Card com borda RGB animada */
+[data-bs-theme="RGB"] .sector-header {
+  position: relative;
+  z-index: 1;
+  border-radius: 12px;
+ 
+}
+
+/* Cria a borda animada */
+[data-bs-theme="RGB"] .sector-header::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: inherit;
+  padding: 3px; /* espessura da borda */
+  background: linear-gradient(
+    90deg,
+    rgb(255, 123, 0),
+    rgb(255, 255, 125),
+    rgb(79, 126, 255),
+    rgb(13, 175, 187),
+    rgb(255, 123, 0)
+  );
+  background-size: 400% 100%;
+  animation: animaGradiente 8s linear infinite alternate;
+  -webkit-mask: 
+      linear-gradient(#fff 0 0) content-box, 
+      linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor; /* faz só a borda aparecer */
+          mask-composite: exclude;
+  z-index: -1; /* fica atrás do card */
+}
+
+
+[data-bs-theme="RGB"] .sector-item{
+border: none;
+}
+
+[data-bs-theme="RGB"]#computers-4 {
+ background: transparent !important;
+}
+
+[data-bs-theme="RGB"].sector-computer {
+ background: transparent !important;
+}
+
+
+[data-bs-theme="RGB"].sector-computer, strong, small{
+ color: black !important;
+}
+
+
+
+[data-bs-theme="RGB"].sector-info, p {
+    color: #ffffff !important;
+  
+}
+
+[data-bs-theme="RGB"].theme-selector {
+     position: absolute; /* garante que o z-index funcione corretamente */
+  z-index: 9999
+  
+}
+
+
+/* Card com borda RGB animada */
+[data-bs-theme="RGB"] .computer-card{
+  position: relative;
+  z-index: 1;
+  border-radius: 12px;
+}
+
+/* Cria a borda animada */
+[data-bs-theme="RGB"] .computer-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: inherit;
+  padding: 3px; /* espessura da borda */
+  background: linear-gradient(
+    90deg,
+    rgb(255, 123, 0),
+    rgb(255, 255, 125),
+    rgb(79, 126, 255),
+    rgb(13, 175, 187),
+    rgb(255, 123, 0)
+  );
+  background-size: 400% 100%;
+  animation: animaGradiente 8s linear infinite alternate;
+  -webkit-mask: 
+      linear-gradient(#fff 0 0) content-box, 
+      linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor; /* faz só a borda aparecer */
+          mask-composite: exclude;
+  z-index: -1; /* fica atrás do card */
+}
+
+/* Fundo interno do card continua normal */
+[data-bs-theme="RGB"] .computer-card {
+  background: var(--bg-card);
+  color: var(--text-primary);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
+
 /* Animação do gradiente */
 @keyframes animaGradiente {
   0%   { background-position: 0% 50%; }
@@ -1153,6 +1262,13 @@ body {
 
   border-radius: 12px;
 }
+
+[data-bs-theme="RGB"] .sector-header {
+
+
+ background: transparent;
+}
+
 
 /* Cria a borda animada */
 [data-bs-theme="RGB"] .modal::before {

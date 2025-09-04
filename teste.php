@@ -7,9 +7,12 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    
     <div class="app">
         <!-- Header -->
+         
        <header class="header">
+        
     <div class="header-content">
         <img class="logo" src="img/3.png" alt="">
         <h1> Sistema de Gerenciamento de Computadores</h1>
@@ -19,9 +22,7 @@
             <button class="nav-btn" data-tab="sectors">Setores</button>
         </nav>
         
-        <!---------------------VVVVVV  DROPDOWN MODO ESCURO AQUI   VVVVVV---------------------------------------->
-
-        <div class="theme-selector">
+          <div class="theme-selector"  data-bs-display="static">
             <button class="dropdown-button" id="themeButton">
                 <span class="theme-icon" id="currentThemeIcon">☀️</span>
                 <span id="currentThemeText">Claro</span>
@@ -47,6 +48,8 @@
                 </div>
             </div>
         </div>
+
+      
     </div>
 </header>
  <!---------------------------- ^^^^^^   DROPDOWN MODO ESCURO AQUI ^^^^^^^  ---------------------------------------->
