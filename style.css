@@ -812,7 +812,7 @@ body {
 
 
 /*teste-----------------------------------------------------------*/
-/* ADICIONE ESTAS VARIÁVEIS NO INÍCIO DO SEU STYLE.CSS */
+
 
 :root {
     /* Tema Claro */
@@ -837,18 +837,39 @@ body {
     --bg-primary: #121212;
     --bg-secondary: #1e1e1e;
     --bg-card: #2d2d2d;
-    --text-primary: #e0e0e0;
-    --text-secondary: #b0b0b0;
+    --text-primary: #ffffff;
+    --text-secondary: #ffffff;
     --border-color: #404040;
     --header-bg: #1a1a1a;
     --nav-bg: #2d2d2d;
     --nav-active: #4dabf7;
     --shadow: rgba(0, 0, 0, 0.3);
     --modal-bg: #2d2d2d;
-    --input-bg: #3a3a3a;
+    --input-bg: #1f1f1f;
     --button-primary: #4dabf7;
     --button-secondary: #6c757d;
 }
+
+[data-bs-theme="dark"] h2{
+    color: rgb(255, 255, 255) !important;
+}
+[data-bs-theme="dark"] .modal-header{
+    background-color: #202020!important;
+}
+
+[data-bs-theme="dark"] h3{
+    color: rgb(255, 255, 255) !important;
+}
+
+[data-bs-theme="dark"] strong{
+    color: rgb(122, 122, 122) !important;
+}
+
+
+
+  [data-bs-theme="dark"]  label{
+    color:rgb(122, 122, 122);
+  }
 
 [data-bs-theme="RGB"] {
     --bg-primary: transparent; /* Deixa transparente para ver a imagem */
@@ -1107,6 +1128,39 @@ body {
 
     
 }
+
+
+/* Card com borda RGB animada */
+[data-bs-theme="RGB"] .modal {
+
+
+  border-radius: 12px;
+}
+
+/* Cria a borda animada */
+[data-bs-theme="RGB"] .modal::before {
+ 
+  border-radius: inherit;
+  padding: 3px; /* espessura da borda */
+  background: linear-gradient(
+    90deg,
+    rgb(255, 123, 0),
+    rgb(255, 255, 125),
+    rgb(79, 126, 255),
+    rgb(13, 175, 187),
+    rgb(255, 123, 0)
+  );
+
+  animation: animaGradiente 8s linear infinite alternate;
+  -webkit-mask: 
+      linear-gradient(#fff 0 0) content-box, 
+      linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor; /* faz só a borda aparecer */
+          mask-composite: exclude;
+  z-index: -1; /* fica atrás do card */
+}
+
+
 
 
 body {
