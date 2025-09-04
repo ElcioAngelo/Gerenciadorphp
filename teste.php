@@ -294,7 +294,6 @@
             </form>
         </div>
     </div>
-<!-- Escolha o tema-->
 
 
 
