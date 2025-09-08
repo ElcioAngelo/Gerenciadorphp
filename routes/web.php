@@ -16,6 +16,11 @@ Route::get('/sector', function() {
 });
 
 
+// routes/web.php
+Route::get('/', function () {
+    return view('index'); // carrega resources/views/index.blade.php
+});
+
 
 
 
