@@ -11,6 +11,12 @@ Route::get('/computer', function () {
     return view('computer');
 });
 
+Route::get('/sector', function() {
+    return view('sector');
+});
+
+
+
 
 
 

@@ -1,6 +1,20 @@
-{{-- Página de computadores --}}
+<?php 
+      use Carbon\Carbon;
+                    Carbon::setLocale('pt_BR');
 
-<h2>
-    Página de computadores
-</h2>
+                    $data = Carbon::now()->translatedFormat('d \d\e F \d\e Y');
+                    
+    $usuario = 'teste';
+?>
+@extends('layouts.main')
 
+{{-- Título da página --}}
+@section('title', 'Computadores')
+
+{{-- Conteúdo principal da página --}}
+@section('content')
+        <div class="container mt-5">
+            <h1> Bem vindo,{{$usuario}}</h1>
+            <h2>{{$data}}</h2>
+        </div>
+@endsection

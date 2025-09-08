@@ -1,4 +1,3 @@
-{{-- Retira as informa --}}
 @extends('layouts.main')
 
 {{-- Título da página --}}
@@ -6,7 +5,8 @@
 
 {{-- Conteúdo principal da página --}}
 @section('content')
-    <h2>Bem vindo a pagina principal</h2>
-    <p>Conteúdo da página principal </p>
-
-    
+        <div class="container mt-5">
+            <h1> Bem vindo!</h1>
+            <p>Este é o conteúdo da página</p>
+        </div>
+@endsection
