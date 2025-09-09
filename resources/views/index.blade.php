@@ -13,6 +13,8 @@
     <title>Sistema de Gerenciamento de Computadores</title>
 
 <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+<meta name="csrf-token" content="{{ csrf_token() }}">
+
 
 
 </head>
@@ -268,15 +270,15 @@
             <form id="sectorForm">
                 <div class="form-group">
                     <label>Nome do Setor*</label>
-                    <input type="text" name="name" required>
+                    <input type="text" name="nome_do_setor" required>
                 </div>
                 <div class="form-group">
                     <label>Descrição</label>
-                    <textarea name="description" rows="3" placeholder="Descrição opcional do setor"></textarea>
+                    <textarea name="descricao" rows="3" placeholder="Descrição opcional do setor"></textarea>
                 </div>
                 <div class="form-group">
                     <label>Responsável</label>
-                    <input type="text" name="responsible" placeholder="Nome do responsável pelo setor">
+                    <input type="text" name="nome_responsavel" placeholder="Nome do responsável pelo setor">
                 </div>
                 <div class="form-actions">
                     <button type="button" class="btn-secondary" onclick="closeModal('sectorModal')">Cancelar</button>

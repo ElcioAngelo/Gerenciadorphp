@@ -21,6 +21,10 @@ Route::get('/', function () {
     return view('index'); // carrega resources/views/index.blade.php
 });
 
+use App\Http\Controllers\SetorController;
+
+Route::post('/setor', [SetorController::class, 'store'])->name('setor.store');
+Route::get('/setor', [SetorController::class, 'index'])->name('setor.index');
 
 
 
