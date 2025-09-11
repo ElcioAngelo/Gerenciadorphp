@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Setores; // ⚠️ Certifique-se que o Model é 'Setor', singular
+use App\Models\Setor;
 use Illuminate\Http\Request;
 
 class SetoresController extends Controller
@@ -10,30 +10,27 @@ class SetoresController extends Controller
     // Salvar novo setor
     public function salvarSetor(Request $request)
     {
-        // DEBUG temporário (apague depois)
-        // dd($request->all());
-
-        // Validação básica
-        if (empty($request->nome_do_setor)) {
-            return "❌ O campo 'nome_do_setor' é obrigatório.";
-        }
+        $request->validate([
+            'nome_do_setor' => 'required|string|max:255',
+            'descricao' => 'nullable|string|max:255',
+            'nome_responsavel' => 'nullable|string|max:255',
+        ]);
 
         try {
-            $setor = Setores::create([
-                'nome_do_setor'   => $request->nome_do_setor,
-                'descricao'       => $request->descricao ?? null,
-                'nome_responsavel'=> $request->nome_responsavel ?? null,
+            $setor = Setor::create($request->only('nome_do_setor', 'descricao', 'nome_responsavel'));
+            return response()->json([
+                'success' => true,
+                'message' => "Setor cadastrado com sucesso! ID: {$setor->id}",
+                'setor' => $setor
             ]);
-
-            return "✅ Setor cadastrado com sucesso! ID: {$setor->id}";
         } catch (\Exception $e) {
-            return "❌ Erro ao salvar setor: " . $e->getMessage();
+            return response()->json(['success' => false, 'message' => $e->getMessage()], 500);
         }
     }
 
     // Listar setores
     public function listarSetores()
     {
-        return Setores::orderBy('nome_do_setor')->get();
+        return response()->json(Setor::orderBy('nome_do_setor')->get());
     }
 }

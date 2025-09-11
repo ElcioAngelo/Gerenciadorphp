@@ -601,11 +601,21 @@ setTimeout(() => {
 )
 
 
-
 const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
+// Abrir modal (função que você já tinha)
+function openSectorModal() {
+    document.getElementById('sectorModal').style.display = 'block';
+}
+
+function closeModal(modalId) {
+    document.getElementById(modalId).style.display = 'none';
+}
+
+// Enviar formulário de setor
 document.getElementById('sectorForm').addEventListener('submit', function(e) {
     e.preventDefault();
+
     const formData = new FormData(this);
 
     fetch('/setores/salvar', {
@@ -613,11 +623,32 @@ document.getElementById('sectorForm').addEventListener('submit', function(e) {
         headers: { 'X-CSRF-TOKEN': token },
         body: formData
     })
-    .then(res => res.text())
+    .then(res => res.json())
     .then(data => {
-        alert(data);
-        this.reset();
-        closeModal('sectorModal');
+        alert(data.message);
+        if (data.success) {
+            this.reset();
+            closeModal('sectorModal');
+            listarSetores(); // atualizar lista
+        }
     })
     .catch(err => console.error('Erro:', err));
 });
+
+// Listar setores na tela
+function listarSetores() {
+    fetch('/setores/listar')
+        .then(res => res.json())
+        .then(data => {
+            const tree = document.getElementById('sectorsTree');
+            tree.innerHTML = '';
+            data.forEach(setor => {
+                const div = document.createElement('div');
+                div.textContent = `${setor.nome_do_setor} - ${setor.nome_responsavel || 'Sem responsável'}`;
+                tree.appendChild(div);
+            });
+        });
+}
+
+// Inicializa lista ao carregar página
+document.addEventListener('DOMContentLoaded', listarSetores);

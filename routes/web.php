@@ -24,8 +24,7 @@ Route::get('/', function () {
 
 use App\Http\Controllers\SetoresController;
 
+Route::get('/setores/listar', [SetoresController::class, 'listarSetores']);
 Route::post('/setores/salvar', [SetoresController::class, 'salvarSetor']);
-
-
 
 
