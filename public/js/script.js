@@ -602,37 +602,22 @@ setTimeout(() => {
 
 
 
+const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
-
-
-
-document.getElementById('sectorForm').addEventListener('submit', async function(e) {
+document.getElementById('sectorForm').addEventListener('submit', function(e) {
     e.preventDefault();
-
     const formData = new FormData(this);
 
-    try {
-        const response = await fetch('/setor', {
-            method: 'POST',
-            headers: {
-                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
-            },
-            body: formData
-        });
-
-        const result = await response.json();
-
-        if (result.success) {
-            alert('Setor cadastrado com sucesso!');
-            this.reset();
-            closeModal('sectorModal');
-            loadSectorOptions();
-            loadSectorsTree();
-        } else {
-            alert('Erro ao cadastrar setor.');
-        }
-    } catch (error) {
-        console.error(error);
-        alert('Erro de conexão com o servidor.');
-    }
+    fetch('/setores/salvar', {
+        method: 'POST',
+        headers: { 'X-CSRF-TOKEN': token },
+        body: formData
+    })
+    .then(res => res.text())
+    .then(data => {
+        alert(data);
+        this.reset();
+        closeModal('sectorModal');
+    })
+    .catch(err => console.error('Erro:', err));
 });

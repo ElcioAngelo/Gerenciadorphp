@@ -4,33 +4,20 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
-    /**
-     * Run the migrations.
-     */
+return new class extends Migration {
     public function up(): void
-{
-    Schema::create('setor', function (Blueprint $table) {
-        $table->id();
-        $table->string('nome');
-        $table->text('descricao')->nullable();
-        $table->string('responsavel')->nullable();
-        $table->timestamps();
-    });
-}
-
-
-
-    /**
-     * Reverse the migrations.
-     */
-    public function down(): void
     {
-        Schema::dropIfExists('setor');
+        Schema::create('setores', function (Blueprint $table) {
+            $table->id();
+            $table->string('nome_do_setor');
+            $table->text('descricao')->nullable();
+            $table->string('nome_responsavel')->nullable();
+            $table->timestamps();
+        });
     }
 
-
-
-    
+    public function down(): void
+    {
+        Schema::dropIfExists('setores');
+    }
 };
