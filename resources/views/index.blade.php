@@ -1,31 +1,16 @@
+@section('title', 'Sistema de gerenciamento de computadores')
 
-<!--
-// =======================
-// ! 🚨 FRONT AND 🚨
-// =======================
--->
-<!DOCTYPE html>
-<html lang="pt-BR" class="h-100" data-bs-theme="light">
-
+@section('content')
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistema de Gerenciamento de Computadores</title>
-
-<link rel="stylesheet" href="{{ asset('css/style.css') }}">
-<meta name="csrf-token" content="{{ csrf_token() }}">
-
-
-
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
+<div class="app">
+    <!-- Header -->
 
-<body>
-
-    <div class="app">
-        <!-- Header -->
-
-        <header class="header">
-
+    <header class="header">
             <div class="header-content">
                 <img class="logo" src="img/3.png" alt="">
                 <h1> Sistema de Gerenciamento de Computadores</h1>
@@ -34,20 +19,10 @@
                     <button class="nav-btn" data-tab="computers">Computadores</button>
                     <button class="nav-btn" data-tab="sectors">Setores</button>
                 </nav>
-
-
-
             </div>
-
 
     </div>
     </header>
-
-
-    <div class="linha-colorida-animada"></div>
-
-
-
     <!-- Main Content -->
     <main class="main-content">
         <!-- Dashboard Tab -->
@@ -291,6 +266,10 @@
 
 
    <script src="{{ asset('js/script.js') }}"></script>
-</body>
 
-</html>
+    <div class="linha-colorida-animada"></div>
+@endsection
+
+
+
+
