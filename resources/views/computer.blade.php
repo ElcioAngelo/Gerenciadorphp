@@ -17,4 +17,7 @@
             <h1> Bem vindo,{{$usuario}}</h1>
             <h2>{{$data}}</h2>
         </div>
+
+        {{-- TODO: PRECISO CRIAR A CONEXÃO COM O BANCO DE DADOS, E O HTML PARA RENDERIZAR. --}}
+
 @endsection

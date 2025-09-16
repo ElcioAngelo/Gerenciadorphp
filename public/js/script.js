@@ -1,3 +1,11 @@
+// ! *****************************************************************
+// ** Precisamos remover esse script, ele utiliza localstorage como um 
+// ** banco de dados, agora que temos um verdadeiro não precisamos
+// ** mais dele.
+// ! *****************************************************************
+
+//TODO: Transferir a lógica dele para PHP, e depois remover-lo. 
+
 // Global variables
 let computers = JSON.parse(localStorage.getItem('computers')) || [];
 let sectors = JSON.parse(localStorage.getItem('sectors')) || [
